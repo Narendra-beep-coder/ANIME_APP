@@ -84,7 +84,8 @@ export default function AnimeDetailPage() {
         const response = await fetch(`/api/anime/${id}`);
         const data = await response.json();
         
-        if (data.details) {
+        // Check if API returned valid data with episodes
+        if (data.details && data.details.episodes && data.details.episodes.length > 0) {
           setAnime(data.details);
         } else if (sampleAnimeDetails[id]) {
           setAnime(sampleAnimeDetails[id]);

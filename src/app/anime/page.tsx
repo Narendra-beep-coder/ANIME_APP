@@ -20,7 +20,7 @@ const sampleAnime = [
   { id: 'attack-on-titan', title: 'Attack on Titan', poster: undefined, type: 'anime' as const, episodes: 87, status: 'Completed' },
   { id: 'demon-slayer', title: 'Demon Slayer', poster: undefined, type: 'anime' as const, episodes: 26, status: 'Completed' },
   { id: 'my-hero-academia', title: 'My Hero Academia', poster: undefined, type: 'anime' as const, episodes: 138, status: 'Completed' },
-  { id: ' jujutsu-kaisen', title: 'Jujutsu Kaisen', poster: undefined, type: 'anime' as const, episodes: 24, status: 'Completed' },
+  { id: 'jujutsu-kaisen', title: 'Jujutsu Kaisen', poster: undefined, type: 'anime' as const, episodes: 24, status: 'Completed' },
   { id: 'death-note', title: 'Death Note', poster: undefined, type: 'anime' as const, episodes: 37, status: 'Completed' },
   { id: 'fullmetal-alchemist', title: 'Fullmetal Alchemist', poster: undefined, type: 'anime' as const, episodes: 64, status: 'Completed' },
   { id: 'one-punch-man', title: 'One Punch Man', poster: undefined, type: 'anime' as const, episodes: 24, status: 'Completed' },

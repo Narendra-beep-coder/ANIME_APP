@@ -67,6 +67,76 @@ const sampleMangaDetails: Record<string, MangaDetails> = {
       title: `Chapter ${i + 1}`
     })),
   },
+  'naruto': {
+    id: 'naruto',
+    title: 'Naruto',
+    description: 'Naruto Uzumaki, a young ninja with a demon fox sealed inside him, dreams of becoming the Hokage, the leader of his village.',
+    genres: ['Action', 'Adventure', 'Martial Arts'],
+    status: 'Completed',
+    year: '1999',
+    rating: '8.7',
+    totalChapters: 700,
+    chapters: Array.from({ length: 700 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'demon-slayer': {
+    id: 'demon-slayer',
+    title: 'Demon Slayer: Kimetsu no Yaiba',
+    description: 'Tanjiro Kamado, a kind-hearted boy, becomes a demon slayer after his family is slaughtered and his sister Nezuko is turned into a demon.',
+    genres: ['Action', 'Supernatural', 'Historical'],
+    status: 'Completed',
+    year: '2016',
+    rating: '9.0',
+    totalChapters: 205,
+    chapters: Array.from({ length: 205 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'jujutsu-kaisen': {
+    id: 'jujutsu-kaisen',
+    title: 'Jujutsu Kaisen',
+    description: 'Yuji Itadori, a high school student with exceptional physical abilities, joins a secret organization of sorcerers to kill a powerful curse.',
+    genres: ['Action', 'Supernatural', 'School'],
+    status: 'Ongoing',
+    year: '2018',
+    rating: '8.9',
+    totalChapters: 260,
+    chapters: Array.from({ length: 260 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'solo-leveling': {
+    id: 'solo-leveling',
+    title: 'Solo Leveling',
+    description: 'In a world where hunters, humans who possess magical abilities, must battle dungeons, Sung Jin-Woo is the weakest hunter of all.',
+    genres: ['Action', 'Adventure', 'Fantasy'],
+    status: 'Completed',
+    year: '2018',
+    rating: '9.3',
+    totalChapters: 180,
+    chapters: Array.from({ length: 180 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'tower-of-god': {
+    id: 'tower-of-god',
+    title: 'Tower of God',
+    description: 'Twenty-fifth Bam enters a mysterious tower called the Tower, seeking to reach the top and find his friend Rachel.',
+    genres: ['Action', 'Adventure', 'Fantasy', 'Mystery'],
+    status: 'Ongoing',
+    year: '2010',
+    rating: '8.5',
+    totalChapters: 580,
+    chapters: Array.from({ length: 580 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
 };
 
 export default function MangaDetailPage() {
@@ -83,7 +153,8 @@ export default function MangaDetailPage() {
         const response = await fetch(`/api/manga/${id}`);
         const data = await response.json();
         
-        if (data.details) {
+        // Check if API returned valid data with chapters
+        if (data.details && data.details.chapters && data.details.chapters.length > 0) {
           setManga(data.details);
         } else if (sampleMangaDetails[id]) {
           setManga(sampleMangaDetails[id]);
