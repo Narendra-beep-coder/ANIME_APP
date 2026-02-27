@@ -137,6 +137,62 @@ const sampleMangaDetails: Record<string, MangaDetails> = {
       title: `Chapter ${i + 1}`
     })),
   },
+  'hunter-x-hunter-manga': {
+    id: 'hunter-x-hunter-manga',
+    title: 'Hunter x Hunter',
+    description: 'Gon Freecss dreams of becoming a Hunter, a person who searches for treasures, rare beasts, and other mysteries.',
+    genres: ['Action', 'Adventure', 'Comedy'],
+    status: 'Ongoing',
+    year: '1998',
+    rating: '9.4',
+    totalChapters: 390,
+    chapters: Array.from({ length: 390 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'chainsaw-man': {
+    id: 'chainsaw-man',
+    title: 'Chainsaw Man',
+    description: 'Denji is a young man trapped in poverty, until he merges with his pet chainsaw devil and becomes Chainsaw Man.',
+    genres: ['Action', 'Supernatural', 'Horror'],
+    status: 'Ongoing',
+    year: '2018',
+    rating: '8.8',
+    totalChapters: 166,
+    chapters: Array.from({ length: 166 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'spy-x-family': {
+    id: 'spy-x-family',
+    title: 'Spy x Family',
+    description: 'A spy known as Twilight is tasked with infiltrating an elite school by creating a fake family.',
+    genres: ['Action', 'Comedy', 'Slice of Life'],
+    status: 'Ongoing',
+    year: '2019',
+    rating: '9.0',
+    totalChapters: 100,
+    chapters: Array.from({ length: 100 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
+  'tokyo-ghoul-manga': {
+    id: 'tokyo-ghoul-manga',
+    title: 'Tokyo Ghoul',
+    description: 'Ken Kaneki, a college student, is attacked by a ghoul and becomes a half-ghoul.',
+    genres: ['Action', 'Drama', 'Horror', 'Supernatural'],
+    status: 'Completed',
+    year: '2012',
+    rating: '8.6',
+    totalChapters: 302,
+    chapters: Array.from({ length: 302 }, (_, i) => ({
+      number: i + 1,
+      title: `Chapter ${i + 1}`
+    })),
+  },
 };
 
 export default function MangaDetailPage() {
@@ -153,8 +209,8 @@ export default function MangaDetailPage() {
         const response = await fetch(`/api/manga/${id}`);
         const data = await response.json();
         
-        // Check if API returned valid data with chapters
-        if (data.details && data.details.chapters && data.details.chapters.length > 0) {
+        // Check if API returned valid data
+        if (data.details && data.details.title && data.details.title !== 'Unknown Title') {
           setManga(data.details);
         } else if (sampleMangaDetails[id]) {
           setManga(sampleMangaDetails[id]);
