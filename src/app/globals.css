@@ -387,3 +387,22 @@ h4 { font-size: 1.25rem; }
   background: rgba(139, 92, 246, 0.15);
   color: var(--accent-secondary);
 }
+
+/* Custom scrollbar for episode/chapter lists */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}

@@ -13,26 +13,10 @@ interface MangaItem {
   chapters?: number;
 }
 
-const sampleManga = [
-  { id: 'one-piece', title: 'One Piece', poster: undefined, type: 'manga' as const, chapters: 1000, status: 'Ongoing' },
-  { id: 'berserk', title: 'Berserk', poster: undefined, type: 'manga' as const, chapters: 370, status: 'Completed' },
-  { id: 'naruto', title: 'Naruto', poster: undefined, type: 'manga' as const, chapters: 700, status: 'Completed' },
-  { id: 'attack-on-titan-manga', title: 'Attack on Titan', poster: undefined, type: 'manga' as const, chapters: 139, status: 'Completed' },
-  { id: 'demon-slayer', title: 'Demon Slayer', poster: undefined, type: 'manga' as const, chapters: 205, status: 'Completed' },
-  { id: 'jujutsu-kaisen', title: 'Jujutsu Kaisen', poster: undefined, type: 'manga' as const, chapters: 260, status: 'Ongoing' },
-  { id: 'solo-leveling', title: 'Solo Leveling', poster: undefined, type: 'manga' as const, chapters: 180, status: 'Completed' },
-  { id: 'tower-of-god', title: 'Tower of God', poster: undefined, type: 'manga' as const, chapters: 580, status: 'Ongoing' },
-  { id: 'hunter-x-hunter-manga', title: 'Hunter x Hunter', poster: undefined, type: 'manga' as const, chapters: 390, status: 'Ongoing' },
-  { id: 'chainsaw-man', title: 'Chainsaw Man', poster: undefined, type: 'manga' as const, chapters: 166, status: 'Ongoing' },
-  { id: 'spy-x-family', title: 'Spy x Family', poster: undefined, type: 'manga' as const, chapters: 100, status: 'Ongoing' },
-  { id: 'tokyo-ghoul-manga', title: 'Tokyo Ghoul', poster: undefined, type: 'manga' as const, chapters: 302, status: 'Completed' },
-];
-
 const sortOptions = [
   { value: 'popular', label: 'Most Popular' },
   { value: 'trending', label: 'Trending' },
   { value: 'recent', label: 'Recently Updated' },
-  { value: 'new', label: 'New Releases' },
 ];
 
 export default function MangaPage() {
@@ -51,12 +35,11 @@ export default function MangaPage() {
         if (data.results && data.results.length > 0) {
           setManga(data.results);
         } else {
-          // Use sample data if API doesn't return results
-          setManga(sampleManga);
+          setManga([]);
         }
       } catch (err) {
         console.error('Failed to fetch manga:', err);
-        setManga(sampleManga);
+        setManga([]);
       } finally {
         setLoading(false);
       }
@@ -95,7 +78,7 @@ export default function MangaPage() {
             {sortOptions.map((option) => (
               <button
                 key={option.value}
-                onClick={() => setSortBy(option.value)}
+                onClick={() => { setSortBy(option.value); setPage(1); }}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   sortBy === option.value
                     ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg shadow-purple-500/25'
@@ -115,6 +98,10 @@ export default function MangaPage() {
           {Array.from({ length: 12 }).map((_, i) => (
             <ContentCardSkeleton key={i} type="manga" />
           ))}
+        </div>
+      ) : manga.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-[var(--text-secondary)] text-lg">No manga found. Please try again.</p>
         </div>
       ) : (
         <>

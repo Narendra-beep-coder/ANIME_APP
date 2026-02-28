@@ -4,7 +4,7 @@ import { getAnimeList, getTrending, getRecentUpdates } from '@/lib/scraper';
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const page = parseInt(searchParams.get('page') || '1');
-  const type = searchParams.get('type'); // 'trending' | 'recent' | 'list'
+  const type = searchParams.get('type'); // 'trending' | 'recent' | 'list' | 'popular'
 
   try {
     let results;

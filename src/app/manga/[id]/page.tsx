@@ -12,6 +12,7 @@ interface Chapter {
 
 interface MangaDetails {
   id: string;
+  malId?: number;
   title: string;
   poster?: string;
   banner?: string;
@@ -22,178 +23,10 @@ interface MangaDetails {
   rating?: string;
   chapters?: Chapter[];
   totalChapters?: number;
+  authors?: string[];
+  titleEnglish?: string;
+  titleJapanese?: string;
 }
-
-const sampleMangaDetails: Record<string, MangaDetails> = {
-  'one-piece': {
-    id: 'one-piece',
-    title: 'One Piece',
-    description: 'A pirate crew led by Monkey D. Luffy searches for the greatest treasure ever, known as the One Piece. The crew faces off against the Marines and other pirates while exploring the Grand Line.',
-    genres: ['Action', 'Adventure', 'Comedy', 'Fantasy'],
-    status: 'Ongoing',
-    year: '1997',
-    rating: '9.2',
-    totalChapters: 1000,
-    chapters: Array.from({ length: 1000 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'berserk': {
-    id: 'berserk',
-    title: 'Berserk',
-    description: 'Guts, a former mercenary, joins the Band of the Hawk and battles demons in a dark medieval fantasy world.',
-    genres: ['Action', 'Adventure', 'Drama', 'Fantasy', 'Horror'],
-    status: 'Completed',
-    year: '1989',
-    rating: '9.5',
-    totalChapters: 370,
-    chapters: Array.from({ length: 370 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'attack-on-titan-manga': {
-    id: 'attack-on-titan-manga',
-    title: 'Attack on Titan',
-    description: 'Humanity lives within cities surrounded by enormous walls due to the Titans, giant humanoid creatures who devour humans.',
-    genres: ['Action', 'Drama', 'Mystery', 'Horror'],
-    status: 'Completed',
-    year: '2009',
-    rating: '9.1',
-    totalChapters: 139,
-    chapters: Array.from({ length: 139 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'naruto': {
-    id: 'naruto',
-    title: 'Naruto',
-    description: 'Naruto Uzumaki, a young ninja with a demon fox sealed inside him, dreams of becoming the Hokage, the leader of his village.',
-    genres: ['Action', 'Adventure', 'Martial Arts'],
-    status: 'Completed',
-    year: '1999',
-    rating: '8.7',
-    totalChapters: 700,
-    chapters: Array.from({ length: 700 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'demon-slayer': {
-    id: 'demon-slayer',
-    title: 'Demon Slayer: Kimetsu no Yaiba',
-    description: 'Tanjiro Kamado, a kind-hearted boy, becomes a demon slayer after his family is slaughtered and his sister Nezuko is turned into a demon.',
-    genres: ['Action', 'Supernatural', 'Historical'],
-    status: 'Completed',
-    year: '2016',
-    rating: '9.0',
-    totalChapters: 205,
-    chapters: Array.from({ length: 205 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'jujutsu-kaisen': {
-    id: 'jujutsu-kaisen',
-    title: 'Jujutsu Kaisen',
-    description: 'Yuji Itadori, a high school student with exceptional physical abilities, joins a secret organization of sorcerers to kill a powerful curse.',
-    genres: ['Action', 'Supernatural', 'School'],
-    status: 'Ongoing',
-    year: '2018',
-    rating: '8.9',
-    totalChapters: 260,
-    chapters: Array.from({ length: 260 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'solo-leveling': {
-    id: 'solo-leveling',
-    title: 'Solo Leveling',
-    description: 'In a world where hunters, humans who possess magical abilities, must battle dungeons, Sung Jin-Woo is the weakest hunter of all.',
-    genres: ['Action', 'Adventure', 'Fantasy'],
-    status: 'Completed',
-    year: '2018',
-    rating: '9.3',
-    totalChapters: 180,
-    chapters: Array.from({ length: 180 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'tower-of-god': {
-    id: 'tower-of-god',
-    title: 'Tower of God',
-    description: 'Twenty-fifth Bam enters a mysterious tower called the Tower, seeking to reach the top and find his friend Rachel.',
-    genres: ['Action', 'Adventure', 'Fantasy', 'Mystery'],
-    status: 'Ongoing',
-    year: '2010',
-    rating: '8.5',
-    totalChapters: 580,
-    chapters: Array.from({ length: 580 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'hunter-x-hunter-manga': {
-    id: 'hunter-x-hunter-manga',
-    title: 'Hunter x Hunter',
-    description: 'Gon Freecss dreams of becoming a Hunter, a person who searches for treasures, rare beasts, and other mysteries.',
-    genres: ['Action', 'Adventure', 'Comedy'],
-    status: 'Ongoing',
-    year: '1998',
-    rating: '9.4',
-    totalChapters: 390,
-    chapters: Array.from({ length: 390 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'chainsaw-man': {
-    id: 'chainsaw-man',
-    title: 'Chainsaw Man',
-    description: 'Denji is a young man trapped in poverty, until he merges with his pet chainsaw devil and becomes Chainsaw Man.',
-    genres: ['Action', 'Supernatural', 'Horror'],
-    status: 'Ongoing',
-    year: '2018',
-    rating: '8.8',
-    totalChapters: 166,
-    chapters: Array.from({ length: 166 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'spy-x-family': {
-    id: 'spy-x-family',
-    title: 'Spy x Family',
-    description: 'A spy known as Twilight is tasked with infiltrating an elite school by creating a fake family.',
-    genres: ['Action', 'Comedy', 'Slice of Life'],
-    status: 'Ongoing',
-    year: '2019',
-    rating: '9.0',
-    totalChapters: 100,
-    chapters: Array.from({ length: 100 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-  'tokyo-ghoul-manga': {
-    id: 'tokyo-ghoul-manga',
-    title: 'Tokyo Ghoul',
-    description: 'Ken Kaneki, a college student, is attacked by a ghoul and becomes a half-ghoul.',
-    genres: ['Action', 'Drama', 'Horror', 'Supernatural'],
-    status: 'Completed',
-    year: '2012',
-    rating: '8.6',
-    totalChapters: 302,
-    chapters: Array.from({ length: 302 }, (_, i) => ({
-      number: i + 1,
-      title: `Chapter ${i + 1}`
-    })),
-  },
-};
 
 export default function MangaDetailPage() {
   const params = useParams();
@@ -201,46 +34,26 @@ export default function MangaDetailPage() {
   
   const [manga, setManga] = useState<MangaDetails | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [chapterPage, setChapterPage] = useState(0);
+  const CHAPTERS_PER_PAGE = 100;
 
   useEffect(() => {
     const fetchManga = async () => {
       setLoading(true);
+      setError(null);
       try {
         const response = await fetch(`/api/manga/${id}`);
         const data = await response.json();
         
-        // Check if API returned valid data
-        if (data.details && data.details.title && data.details.title !== 'Unknown Title') {
+        if (data.details) {
           setManga(data.details);
-        } else if (sampleMangaDetails[id]) {
-          setManga(sampleMangaDetails[id]);
         } else {
-          // Default fallback
-          setManga({
-            id,
-            title: id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-            description: 'Description not available.',
-            genres: ['Unknown'],
-            status: 'Unknown',
-            chapters: [],
-            totalChapters: 0,
-          });
+          setError('Manga not found');
         }
       } catch (err) {
         console.error('Failed to fetch manga details:', err);
-        if (sampleMangaDetails[id]) {
-          setManga(sampleMangaDetails[id]);
-        } else {
-          setManga({
-            id,
-            title: id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-            description: 'Description not available.',
-            genres: ['Unknown'],
-            status: 'Unknown',
-            chapters: [],
-            totalChapters: 0,
-          });
-        }
+        setError('Failed to load manga details. Please try again.');
       } finally {
         setLoading(false);
       }
@@ -254,69 +67,108 @@ export default function MangaDetailPage() {
   if (loading) {
     return (
       <div className="animate-pulse">
-        <div className="h-64 bg-[var(--bg-secondary)] rounded-xl mb-8" />
-        <div className="h-8 bg-[var(--bg-secondary)] rounded w-64 mb-4" />
-        <div className="h-4 bg-[var(--bg-secondary)] rounded w-full mb-2" />
-        <div className="h-4 bg-[var(--bg-secondary)] rounded w-3/4" />
+        <div className="h-48 bg-[var(--bg-secondary)] rounded-xl mb-8" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div>
+            <div className="aspect-[2/3] bg-[var(--bg-secondary)] rounded-xl mb-4" />
+            <div className="space-y-3">
+              <div className="h-4 bg-[var(--bg-secondary)] rounded w-3/4" />
+              <div className="h-4 bg-[var(--bg-secondary)] rounded w-1/2" />
+            </div>
+          </div>
+          <div className="lg:col-span-2">
+            <div className="h-8 bg-[var(--bg-secondary)] rounded w-64 mb-4" />
+            <div className="h-4 bg-[var(--bg-secondary)] rounded w-full mb-2" />
+            <div className="h-4 bg-[var(--bg-secondary)] rounded w-3/4 mb-2" />
+            <div className="h-4 bg-[var(--bg-secondary)] rounded w-5/6" />
+          </div>
+        </div>
       </div>
     );
   }
 
-  if (!manga) {
+  if (error || !manga) {
     return (
       <div className="text-center py-16">
-        <h1 className="text-2xl font-bold mb-4">Manga not found</h1>
-        <Link href="/manga" className="text-[var(--accent-secondary)] hover:underline">
+        <div className="text-6xl mb-4">😕</div>
+        <h1 className="text-2xl font-bold mb-4">{error || 'Manga not found'}</h1>
+        <Link href="/manga" className="btn-secondary inline-flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
           Back to Manga list
         </Link>
       </div>
     );
   }
 
+  const totalChapters = manga.totalChapters || manga.chapters?.length || 0;
+  const chapterPages = Math.ceil(totalChapters / CHAPTERS_PER_PAGE);
+  const currentChapters = manga.chapters?.slice(
+    chapterPage * CHAPTERS_PER_PAGE,
+    (chapterPage + 1) * CHAPTERS_PER_PAGE
+  ) || [];
+
   return (
     <div>
       {/* Banner */}
-      {manga.banner && (
-        <div className="relative h-64 md:h-80 rounded-xl overflow-hidden mb-8">
+      {manga.poster && (
+        <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden mb-8">
           <Image
-            src={manga.banner}
+            src={manga.poster}
             alt={manga.title}
             fill
-            className="object-cover"
+            className="object-cover blur-sm scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/60 to-transparent" />
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Info Section */}
         <div className="lg:col-span-1">
-          <div className="relative aspect-[2/3] rounded-xl overflow-hidden bg-[var(--bg-secondary)] mb-6">
+          <div className="relative aspect-[2/3] rounded-2xl overflow-hidden bg-[var(--bg-secondary)] mb-6 shadow-2xl">
             {manga.poster ? (
               <Image
                 src={manga.poster}
                 alt={manga.title}
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 33vw"
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-500/10 to-purple-600/5">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-purple-500/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
             )}
           </div>
 
+          {/* Read Button */}
+          {totalChapters > 0 && (
+            <Link
+              href={`/manga/${id}/read?chapter=1`}
+              className="btn-secondary w-full flex items-center justify-center gap-2 mb-6"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Read Chapter 1
+            </Link>
+          )}
+
           {/* Metadata */}
-          <div className="space-y-4">
+          <div className="space-y-3 p-4 bg-[var(--bg-card)] rounded-2xl border border-[var(--border)]">
             {manga.status && (
               <div className="flex items-center justify-between">
-                <span className="text-[var(--text-secondary)]">Status</span>
+                <span className="text-[var(--text-secondary)] text-sm">Status</span>
                 <span className={`badge ${
-                  manga.status.toLowerCase().includes('ongoing')
+                  manga.status.toLowerCase().includes('publishing') || manga.status.toLowerCase().includes('ongoing')
                     ? 'badge-warning'
-                    : 'badge-success'
+                    : manga.status.toLowerCase().includes('finished') || manga.status.toLowerCase().includes('complete')
+                    ? 'badge-success'
+                    : 'badge-info'
                 }`}>
                   {manga.status}
                 </span>
@@ -324,14 +176,14 @@ export default function MangaDetailPage() {
             )}
             {manga.year && (
               <div className="flex items-center justify-between">
-                <span className="text-[var(--text-secondary)]">Year</span>
-                <span>{manga.year}</span>
+                <span className="text-[var(--text-secondary)] text-sm">Year</span>
+                <span className="text-sm font-medium">{manga.year}</span>
               </div>
             )}
             {manga.rating && (
               <div className="flex items-center justify-between">
-                <span className="text-[var(--text-secondary)]">Rating</span>
-                <span className="flex items-center gap-1">
+                <span className="text-[var(--text-secondary)] text-sm">Rating</span>
+                <span className="flex items-center gap-1 text-sm font-medium">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
@@ -339,14 +191,30 @@ export default function MangaDetailPage() {
                 </span>
               </div>
             )}
+            {totalChapters > 0 && (
+              <div className="flex items-center justify-between">
+                <span className="text-[var(--text-secondary)] text-sm">Chapters</span>
+                <span className="text-sm font-medium">{totalChapters}</span>
+              </div>
+            )}
+            {manga.authors && manga.authors.length > 0 && (
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-[var(--text-secondary)] text-sm shrink-0">Author</span>
+                <span className="text-sm font-medium text-right">{manga.authors.join(', ')}</span>
+              </div>
+            )}
             {manga.genres && manga.genres.length > 0 && (
               <div>
-                <span className="text-[var(--text-secondary)] block mb-2">Genres</span>
-                <div className="flex flex-wrap gap-2">
+                <span className="text-[var(--text-secondary)] text-sm block mb-2">Genres</span>
+                <div className="flex flex-wrap gap-1.5">
                   {manga.genres.map((genre) => (
-                    <span key={genre} className="px-3 py-1 bg-[var(--bg-tertiary)] rounded-full text-sm">
+                    <Link
+                      key={genre}
+                      href={`/search?q=${encodeURIComponent(genre)}&type=manga`}
+                      className="px-2.5 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs hover:bg-purple-500/20 transition-colors"
+                    >
                       {genre}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -356,47 +224,89 @@ export default function MangaDetailPage() {
 
         {/* Content Section */}
         <div className="lg:col-span-2">
-          <h1 className="text-3xl font-bold mb-4">{manga.title}</h1>
+          <div className="mb-2">
+            <Link href="/manga" className="inline-flex items-center text-[var(--text-secondary)] hover:text-[var(--accent-secondary)] transition text-sm mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Manga
+            </Link>
+          </div>
+
+          <h1 className="text-3xl font-bold mb-1">{manga.title}</h1>
+          {manga.titleJapanese && (
+            <p className="text-[var(--text-muted)] text-sm mb-4">{manga.titleJapanese}</p>
+          )}
           
           {manga.description && (
-            <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">
-              {manga.description}
-            </p>
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold mb-2 text-[var(--text-secondary)]">Synopsis</h2>
+              <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
+                {manga.description}
+              </p>
+            </div>
           )}
 
           {/* Chapters List */}
           <div>
-            <h2 className="text-xl font-bold mb-4">
-              Chapters ({manga.totalChapters || manga.chapters?.length || 0})
-            </h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">
+                Chapters <span className="text-[var(--text-muted)] text-base font-normal">({totalChapters})</span>
+              </h2>
+              {chapterPages > 1 && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-[var(--text-muted)]">
+                    {chapterPage * CHAPTERS_PER_PAGE + 1}–{Math.min((chapterPage + 1) * CHAPTERS_PER_PAGE, totalChapters)}
+                  </span>
+                </div>
+              )}
+            </div>
             
-            {manga.chapters && manga.chapters.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-[500px] overflow-y-auto pr-2">
-                {manga.chapters.slice(0, 100).map((chapter) => (
-                  <Link
-                    key={chapter.number}
-                    href={`/manga/${id}/read?chapter=${chapter.number}`}
-                    className="flex flex-col items-center justify-center p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] hover:border-[var(--accent-secondary)] hover:bg-[var(--bg-tertiary)] transition-all group"
-                  >
-                    <span className="text-lg font-bold font-mono text-[var(--accent-secondary)] group-hover:text-white">
-                      {chapter.number}
-                    </span>
-                    <span className="text-xs text-[var(--text-secondary)] mt-1">
-                      Read
-                    </span>
-                  </Link>
-                ))}
-              </div>
+            {currentChapters.length > 0 ? (
+              <>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
+                  {currentChapters.map((chapter) => (
+                    <Link
+                      key={chapter.number}
+                      href={`/manga/${id}/read?chapter=${chapter.number}`}
+                      className="flex flex-col items-center justify-center p-3 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] hover:border-purple-500/50 hover:bg-purple-500/5 transition-all group"
+                    >
+                      <span className="text-base font-bold font-mono text-purple-500 group-hover:text-purple-400">
+                        {chapter.number}
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)] mt-0.5 group-hover:text-[var(--text-secondary)]">
+                        CH
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Chapter pagination */}
+                {chapterPages > 1 && (
+                  <div className="flex items-center gap-2 mt-4 flex-wrap">
+                    {Array.from({ length: chapterPages }, (_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setChapterPage(i)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                          chapterPage === i
+                            ? 'bg-purple-500 text-white'
+                            : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-purple-500/50'
+                        }`}
+                      >
+                        {i * CHAPTERS_PER_PAGE + 1}–{Math.min((i + 1) * CHAPTERS_PER_PAGE, totalChapters)}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
             ) : (
-              <div className="text-center py-8 bg-[var(--bg-secondary)] rounded-lg">
+              <div className="text-center py-12 bg-[var(--bg-secondary)] rounded-2xl border border-[var(--border)]">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[var(--text-muted)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
                 <p className="text-[var(--text-secondary)]">No chapters available</p>
               </div>
-            )}
-
-            {manga.totalChapters && manga.totalChapters > 100 && (
-              <p className="text-center text-[var(--text-secondary)] mt-4">
-                Showing first 100 chapters. Visit the site for more.
-              </p>
             )}
           </div>
         </div>

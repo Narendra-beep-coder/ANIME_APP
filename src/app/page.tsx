@@ -1,23 +1,7 @@
 import Link from 'next/link';
-import { Section, SectionSkeleton } from '@/components/ui/Section';
+import { Section } from '@/components/ui/Section';
 import { ContentCard } from '@/components/ui/ContentCard';
-
-// Sample data for demonstration - in production, this would come from the API
-const sampleAnime = [
-  { id: 'one-piece', title: 'One Piece', poster: undefined, type: 'anime' as const, episodes: 1000, status: 'Ongoing' },
-  { id: 'naruto', title: 'Naruto', poster: undefined, type: 'anime' as const, episodes: 720, status: 'Completed' },
-  { id: 'attack-on-titan', title: 'Attack on Titan', poster: undefined, type: 'anime' as const, episodes: 87, status: 'Completed' },
-  { id: 'demon-slayer', title: 'Demon Slayer', poster: undefined, type: 'anime' as const, episodes: 26, status: 'Completed' },
-  { id: 'my-hero-academia', title: 'My Hero Academia', poster: undefined, type: 'anime' as const, episodes: 138, status: 'Completed' },
-];
-
-const sampleManga = [
-  { id: 'one-piece-manga', title: 'One Piece', poster: undefined, type: 'manga' as const, chapters: 1000, status: 'Ongoing' },
-  { id: 'berserk', title: 'Berserk', poster: undefined, type: 'manga' as const, chapters: 370, status: 'Completed' },
-  { id: 'vagabond', title: 'Vagabond', poster: undefined, type: 'manga' as const, chapters: 340, status: 'Completed' },
-  { id: 'jojos-bizarre-adventure', title: "JoJo's Bizarre Adventure", poster: undefined, type: 'manga' as const, chapters: 130, status: 'Completed' },
-  { id: 'fullmetal-alchemist', title: 'Fullmetal Alchemist', poster: undefined, type: 'manga' as const, chapters: 108, status: 'Completed' },
-];
+import { getTopAnime, getTopManga } from '@/lib/scraper';
 
 const genres = [
   { name: 'Action', icon: '⚔️', color: 'from-red-500 to-orange-500' },
@@ -30,7 +14,16 @@ const genres = [
   { name: 'Horror', icon: '👻', color: 'from-gray-700 to-gray-900' },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch real data server-side
+  const [topAnime, topManga] = await Promise.allSettled([
+    getTopAnime(10),
+    getTopManga(10),
+  ]);
+
+  const animeList = topAnime.status === 'fulfilled' ? topAnime.value : [];
+  const mangaList = topManga.status === 'fulfilled' ? topManga.value : [];
+
   return (
     <div className="space-y-6">
       {/* Hero Section */}
@@ -151,49 +144,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Popular Anime Section */}
-      <Section title="Popular Anime" viewAllHref="/anime">
-        <div className="content-grid">
-          {sampleAnime.map((anime, index) => (
-            <div 
-              key={anime.id} 
-              className="slide-up" 
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ContentCard
-                id={anime.id}
-                title={anime.title}
-                poster={anime.poster}
-                type={anime.type}
-                episodes={anime.episodes}
-                status={anime.status}
-              />
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* Top Anime Section */}
+      {animeList.length > 0 && (
+        <Section title="Top Anime" viewAllHref="/anime">
+          <div className="content-grid">
+            {animeList.map((anime, index) => (
+              <div 
+                key={anime.id} 
+                className="slide-up" 
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <ContentCard
+                  id={anime.id}
+                  title={anime.title}
+                  poster={anime.poster}
+                  type={anime.type}
+                  episodes={anime.episodes}
+                  status={anime.status}
+                />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
-      {/* Popular Manga Section */}
-      <Section title="Popular Manga" viewAllHref="/manga">
-        <div className="content-grid">
-          {sampleManga.map((manga, index) => (
-            <div 
-              key={manga.id} 
-              className="slide-up" 
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ContentCard
-                id={manga.id}
-                title={manga.title}
-                poster={manga.poster}
-                type={manga.type}
-                chapters={manga.chapters}
-                status={manga.status}
-              />
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* Top Manga Section */}
+      {mangaList.length > 0 && (
+        <Section title="Top Manga" viewAllHref="/manga">
+          <div className="content-grid">
+            {mangaList.map((manga, index) => (
+              <div 
+                key={manga.id} 
+                className="slide-up" 
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <ContentCard
+                  id={manga.id}
+                  title={manga.title}
+                  poster={manga.poster}
+                  type={manga.type}
+                  chapters={manga.chapters}
+                  status={manga.status}
+                />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* Features Section */}
       <section className="py-12">

@@ -13,26 +13,10 @@ interface AnimeItem {
   episodes?: number;
 }
 
-const sampleAnime = [
-  { id: 'one-piece', title: 'One Piece', poster: undefined, type: 'anime' as const, episodes: 1000, status: 'Ongoing' },
-  { id: 'naruto', title: 'Naruto', poster: undefined, type: 'anime' as const, episodes: 720, status: 'Completed' },
-  { id: 'naruto-shippuden', title: 'Naruto Shippuden', poster: undefined, type: 'anime' as const, episodes: 500, status: 'Completed' },
-  { id: 'attack-on-titan', title: 'Attack on Titan', poster: undefined, type: 'anime' as const, episodes: 87, status: 'Completed' },
-  { id: 'demon-slayer', title: 'Demon Slayer', poster: undefined, type: 'anime' as const, episodes: 26, status: 'Completed' },
-  { id: 'my-hero-academia', title: 'My Hero Academia', poster: undefined, type: 'anime' as const, episodes: 138, status: 'Completed' },
-  { id: 'jujutsu-kaisen', title: 'Jujutsu Kaisen', poster: undefined, type: 'anime' as const, episodes: 24, status: 'Completed' },
-  { id: 'death-note', title: 'Death Note', poster: undefined, type: 'anime' as const, episodes: 37, status: 'Completed' },
-  { id: 'fullmetal-alchemist', title: 'Fullmetal Alchemist', poster: undefined, type: 'anime' as const, episodes: 64, status: 'Completed' },
-  { id: 'one-punch-man', title: 'One Punch Man', poster: undefined, type: 'anime' as const, episodes: 24, status: 'Completed' },
-  { id: 'hunter-x-hunter', title: 'Hunter x Hunter', poster: undefined, type: 'anime' as const, episodes: 148, status: 'Completed' },
-  { id: 'tokyo-ghoul', title: 'Tokyo Ghoul', poster: undefined, type: 'anime' as const, episodes: 48, status: 'Completed' },
-];
-
 const sortOptions = [
   { value: 'popular', label: 'Most Popular' },
   { value: 'trending', label: 'Trending' },
   { value: 'recent', label: 'Recently Updated' },
-  { value: 'new', label: 'New Releases' },
 ];
 
 export default function AnimePage() {
@@ -51,12 +35,11 @@ export default function AnimePage() {
         if (data.results && data.results.length > 0) {
           setAnime(data.results);
         } else {
-          // Use sample data if API doesn't return results
-          setAnime(sampleAnime);
+          setAnime([]);
         }
       } catch (err) {
         console.error('Failed to fetch anime:', err);
-        setAnime(sampleAnime);
+        setAnime([]);
       } finally {
         setLoading(false);
       }
@@ -96,7 +79,7 @@ export default function AnimePage() {
             {sortOptions.map((option) => (
               <button
                 key={option.value}
-                onClick={() => setSortBy(option.value)}
+                onClick={() => { setSortBy(option.value); setPage(1); }}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   sortBy === option.value
                     ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/25'
@@ -116,6 +99,10 @@ export default function AnimePage() {
           {Array.from({ length: 12 }).map((_, i) => (
             <ContentCardSkeleton key={i} type="anime" />
           ))}
+        </div>
+      ) : anime.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-[var(--text-secondary)] text-lg">No anime found. Please try again.</p>
         </div>
       ) : (
         <>
