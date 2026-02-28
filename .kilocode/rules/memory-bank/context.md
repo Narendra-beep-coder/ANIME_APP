@@ -23,6 +23,17 @@
   - Search functionality
   - API routes for scraping allmanga.to
   - Dark theme with orange/purple accents
+- [x] Fixed app to show correct content:
+  - Replaced broken allmanga.to scraper with Jikan API (free MyAnimeList API)
+  - Real anime/manga data with cover images, descriptions, genres, ratings
+  - Numeric MAL IDs used for routing (e.g. /anime/21 for One Piece)
+  - Home page fetches real top anime/manga server-side
+  - Detail pages show real metadata with episode/chapter pagination
+  - Watch page uses BigBuckBunny sample video for demo
+  - Manga reader uses picsum.photos for placeholder pages
+  - Search uses Jikan search API for real results
+  - Updated next.config.ts to allow cdn.myanimelist.net and picsum.photos
+  - Build and lint pass successfully
 
 ## Current Structure
 
