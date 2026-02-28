@@ -21,8 +21,8 @@ export default function MangaReaderPage() {
   const [isVertical, setIsVertical] = useState(false);
   const [showControls, setShowControls] = useState(true);
 
-  // Sample pages for demo
-  const samplePages = [
+  // Sample pages for demo - defined inside component to avoid dependency warning
+  const getSamplePages = () => [
     'https://via.placeholder.com/800x1200/1a1a1a/ffffff?text=Chapter+Cover',
     'https://via.placeholder.com/800x1200/252525/ffffff?text=Page+1',
     'https://via.placeholder.com/800x1200/2a2a2a/ffffff?text=Page+2',
@@ -48,11 +48,11 @@ export default function MangaReaderPage() {
           setPages(data.pages);
         } else {
           // Use sample pages for demo
-          setPages(samplePages);
+          setPages(getSamplePages());
         }
       } catch (err) {
         // Use sample pages on error
-        setPages(samplePages);
+        setPages(getSamplePages());
       } finally {
         setLoading(false);
       }
